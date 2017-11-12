@@ -1,6 +1,11 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :update, :destroy]
 
+  def seed
+    Rails.application.load_seed
+    redirect_to '/'
+  end
+
   # GET /projects
   def index
     @projects = Project.all
