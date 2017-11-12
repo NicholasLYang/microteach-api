@@ -40,11 +40,27 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :users, !types[Types::UserType] do
+    resolve -> (obj, args, ctx) { User.all }
+  end
+
   field :user do
     type Types::UserType
     argument :id, !types.ID
     resolve ->(obj, args, ctx) {
       User.find(args["id"])
+    }
+  end
+
+  field :blocks, !types[Types::BlockType] do
+    resolve -> (obj, args, ctx) { Block.all }
+  end
+
+  field :block do
+    type Types::BlockType
+    argument :id, !types.ID
+    resolve ->(obj, args, ctx) {
+      Block.find(args["id"])
     }
   end
 end

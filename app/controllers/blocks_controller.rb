@@ -46,6 +46,6 @@ class BlocksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def block_params
-      params.require(:block).permit(:user_id, :code)
+      params.require(:block).permit(:project_id, :code)
     end
 end
