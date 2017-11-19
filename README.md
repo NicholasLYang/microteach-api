@@ -1,6 +1,6 @@
 # Microtea.ch
 
-### NOTE: This is the backend portion. The frontend/microservices are hosted (here)[https://github.com/NicholasLYang/microteach]
+### NOTE: This is the backend portion. The frontend/microservices are hosted [here](https://github.com/NicholasLYang/microteach)
 
 ## About 
 
