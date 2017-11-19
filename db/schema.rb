@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112064016) do
+ActiveRecord::Schema.define(version: 20171112094951) do
 
   create_table "blocks", force: :cascade do |t|
     t.text "code"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171112064016) do
     t.datetime "updated_at", null: false
     t.integer "project_id"
     t.integer "exercise_id"
+    t.string "function_name"
   end
 
   create_table "exercises", force: :cascade do |t|

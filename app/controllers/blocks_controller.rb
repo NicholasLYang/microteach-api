@@ -16,7 +16,6 @@ class BlocksController < ApplicationController
   # POST /blocks
   def create
     @block = Block.new(block_params)
-
     if @block.save
       render json: @block, status: :created, location: @block
     else
@@ -46,6 +45,6 @@ class BlocksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def block_params
-      params.require(:block).permit(:project_id, :code)
+      params.require(:block).permit(:project_id, :code, :email, :username, :password, :function_name)
     end
 end

@@ -14,11 +14,12 @@ hash_prompt = "<style></style></head><body id=\"preview\">
 <h2><a id=\"Qualities_4\"></a>Qualities</h2>
 <p>The ideal hash function has three main properties:</p>
 <ul>
-<li>It is extremely easy to calculate a hash for any given data.&lt;/li&gt;\n&lt;li&gt;It is extremely computationally difficult to calculate an alphanumeric text that has a given hash.</li>
+<li>It is extremely easy to calculate a hash for any given data.</li>
+<li> It is extremely computationally difficult to calculate an alphanumeric text that has a given hash.</li>
 <li>It is extremely unlikely that two slightly different messages will have the same hash.</li>
 </ul>
 <h2><a id=\"Instructions_9\"></a>Instructions</h2>
-<p>For this exercise, you are going to implement the &lt;code&gt;bcrypt&lt;/code&gt; hashing algorithm for user registration. The input is an object with the following fields:</p>
+<p>For this exercise, you are going to implement the <code>bcrypt</code> hashing algorithm for user registration. The input is an object with the following fields:</p>
 <ul>
 <li><code>saltRounds</code>: The number of rounds for the <a href=\"https://en.wikipedia.org/wiki/Salt_(cryptography)\">salt</a></li>
 <li><code>plaintext</code>: The plaintext password</li>
@@ -48,28 +49,56 @@ finding an element in an array in a worst case scenario of <code>O(log n)</code>
 
 </body>'
 
-input = JSON.generate({ plaintext: "hunter2hunter2", saltRounds: 10 })
+hash_input = JSON.generate({ plaintext: "hunter2hunter2", saltRounds: 10 })
+search_input = JSON.generate(
+  {
+    users:  [
+      { username: "aardvark",
+        name: "Albert Aardvark",
+        password: "$2a$10$aMdBpexYz4Ifl5IogUkHFOUI2VKz9sSCul4Z4sSjuZrkPvlbTbouC"
+      },
+      { username: "barry",
+        name: "Barry White",
+        password: "$2a$10$l5QZFgYW9W9c3uR06zFIDOwx5UIoX30In81jDpc/5jutnbj7VW3my"
+      },
+      { username: "case",
+        name: "Henry Dorsett Case",
+        password: "$2a$10$PR0h9bPxrDXmDKrPfnshQuD8LJeRyFJEfVMl2S5IsDLnFOCe6TpPm"
+      },
+      { username: "david",
+        name: "David Foster Wallace",
+        password: '$2a$10$5nRQKxrEVxumk5SfSou8TuIZvPIs4ogpyQXSUo6forPO7KCB94smW'
+      },
+      {
+        username: "earl",
+        name: "Earl Grey",
+        password: "$2a$10$bzBaIlIhx0.KzH86Dge98engnAz5Pjcm7EgYGO8S81DYsjcdvEYay"
+      }
+    ]
+  })
 tutorial = Tutorial.create({ name: "Make your own Blog!", author: 1 })
 Tutorial.create({ name: "Make a Todo List!", author: 1 })
-exercise = Exercise.create(
+hash_exercise = Exercise.create(
   { prompt: hash_prompt,
-    input: input,
+    input: hash_input,
     name: "Hash Exercise!",
     tutorial_id: tutorial.id
   }
 )
 
-Exercise.create(
+search_exercise = Exercise.create(
   { prompt: search_prompt,
     name: "Search Exercise!",
-    tutorial_id: tutorial.id
+    tutorial_id: tutorial.id,
+    input: search_input
   }
 )
+
 
 project = Project.create(
   { user_id: 1,
     tutorial_id: tutorial.id,
-    current_exercise: exercise.id,
+    current_exercise: search_exercise.id,
     name: "My Blog"
   }
 )
@@ -78,6 +107,14 @@ Block.create(
   {
     code: "var a = 10;",
     project_id: project.id,
-    exercise_id: exercise.id
+    exercise_id: hash_exercise.id
+  }
+)
+
+Block.create(
+  {
+    code: "",
+    project_id: project.id,
+    exercise_id: search_exercise.id
   }
 )

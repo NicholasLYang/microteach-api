@@ -63,4 +63,5 @@ Types::QueryType = GraphQL::ObjectType.define do
       Block.find(args["id"])
     }
   end
+
 end
